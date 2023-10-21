@@ -1,19 +1,30 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import packagesRoutes from './routes/packages';
 
-const PORT = 3000;
+import { Packer } from './components/Packer';
+
+const port = process.env.PORT || 3000;
 
 // Create an Express application.
 const app = express();
 
+// Enable all CORS Requests for now - can be configured.
+app.use(cors());
+
 // Use body parser middleware to parse the request body.
-// Does not parse all kinds of bodies like files, JSON, etc. 
-// app.use(bodyParser.urlencoded({ extended: false }));   // { extended: false } -> Warning: body-parser deprecated undefined extended: provide extended option
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));    
 
 // Add packagesRoutes as middleware.
 app.use(packagesRoutes);
 
 // Listen on port 3000.
-app.listen(PORT);
+app.listen(port);
+
+// Exporting Packer functionality for use as an NPM module.
+export default {
+    createPackages: Packer.pack
+};

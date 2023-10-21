@@ -1,21 +1,22 @@
-import { Packer } from '../models/Packer';
+import { Packer } from '../components/Packer';
 
 /**
-* Route handler for GET /packages/:filePath API endpoint
+* Route handler for GET /packages API endpoint
 *
 * @param {Request} req Request
 * @param {Response} req Response
 * @param {NextFunction} next Next middleware function
 * @returns {String} Package item details
 */
-const getPackages = (req: any, res: any, next: any) => { // TODO: Change param types
-    const filePath = "/resources/input_invalid_item_weight"; // TODO: Remove hardcoding, accept as input
+const getPackages = async (req: any, res: any, next: any) => { // TODO: Change param types
+    const filePath = "/resources/example_input_valid"; // TODO: Remove hardcoding, accept as input
 
-    console.log('filePath inside handler----->>>', filePath);
+    const packingSolution = await Packer.pack(filePath);
 
-    const packingSolution = Packer.pack(filePath);
+    console.log('packingSolution----->>>', packingSolution);
 
-    res.status(200).send(packingSolution); // TODO: Change - send file, add appropriate response headers
+    res.set('Content-Type', 'text/html; charset=utf-8');
+    res.status(200).send(packingSolution);
 }
 
 const packagesHandlers = {
