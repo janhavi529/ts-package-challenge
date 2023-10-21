@@ -4,6 +4,7 @@ import readline from "readline";
 
 import appRootPath from "app-root-path";
 
+import pathUtils from '../lib/utils/path';
 import { PackingError } from "../lib/errors/PackingError";
 import notFoundErrors from "../lib/errors/NotFoundErrors";
 
@@ -25,19 +26,8 @@ export class Packer {
    */
   static async pack(filePath: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      const appRoot = appRootPath.toString();
-
-      let absoluteInputPath = "";
-
-      // Split file path based on separator to make sure it is O.S. agnostic.
-      const testFilePathArr = filePath.split(path.sep);
-
-      if (filePath.includes(appRoot)) {
-        absoluteInputPath = path.join(...testFilePathArr);
-      } else {
-        // Get absolute file path by joining the application's root path.
-        absoluteInputPath = path.join(appRoot, ...testFilePathArr);
-      }
+      // Get absolute file path.
+      const absoluteInputPath = pathUtils.getAbsoluteFilePath(filePath);
 
       // Check if the input file exists.
       if (!fs.existsSync(absoluteInputPath)) {
@@ -45,10 +35,9 @@ export class Packer {
           `File ${absoluteInputPath} does not exist`
         );
       }
-      // TODO: Move absolute path calculation to file utils
 
       // Set the output file path to /resources/output.
-      const absoluteOutputPath = path.join(appRoot, "resources", "output");
+      const absoluteOutputPath = path.join(appRootPath.toString(), "resources", "output");
 
       // Create read and write streams (default encoding is utf8).
       const readStream = fs.createReadStream(absoluteInputPath);

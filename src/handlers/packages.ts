@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express';
 import { Packer } from '../components/Packer';
 
 /**
@@ -8,12 +9,10 @@ import { Packer } from '../components/Packer';
 * @param {NextFunction} next Next middleware function
 * @returns {String} Package item details
 */
-const getPackages = async (req: any, res: any, next: any) => { // TODO: Change param types
+const getPackages = async (req: Request, res: Response, next: NextFunction) => { 
     const filePath = "/resources/example_input_valid"; // TODO: Remove hardcoding, accept as input
 
     const packingSolution = await Packer.pack(filePath);
-
-    console.log('packingSolution----->>>', packingSolution);
 
     res.set('Content-Type', 'text/html; charset=utf-8');
     res.status(200).send(packingSolution);
