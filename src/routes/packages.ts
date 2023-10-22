@@ -7,8 +7,8 @@ const router = Router();
 /**
 * To handle GET package details.
 */
-// TODO: Upload file using Multer package
-router.get('/packages', packagesHandlers.getPackages);
+// TODO: Further enhancements - Upload file functionality 
+router.get('/packages/:fileName', packagesHandlers.getPackages);
 
 /**
 * To check the health status (dummy).
