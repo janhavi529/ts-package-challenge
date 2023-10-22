@@ -4,8 +4,6 @@ import cors from 'cors';
 
 import packagesRoutes from './routes/packages';
 
-import { Packer } from './components/Packer';
-
 const port = process.env.PORT || 3000;
 
 // Create an Express application.
@@ -23,8 +21,3 @@ app.use(packagesRoutes);
 
 // Listen on port 3000.
 app.listen(port);
-
-// Exporting Packer functionality for use as an NPM module.
-export default {
-    createPackages: Packer.pack
-};
