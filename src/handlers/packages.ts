@@ -1,4 +1,4 @@
-import PackerUtil from "jt-packer-utility";
+import Packer from "jt-packer-utility";
 
 import { Request, Response, NextFunction } from "express";
 
@@ -14,10 +14,12 @@ const getPackages = async (req: Request, res: Response, next: NextFunction) => {
   const fileName = req.params.fileName;
   const filePath = `/resources/${fileName}`; // TODO: Remove hardcoding
 
-  const packingSolution = await PackerUtil.createPackages(
+  const packingSolution = await Packer.pack(
     filePath
   );
 
+  console.log('packingSolution------->>>', packingSolution);
+  
   res.set("Content-Type", "text/html; charset=utf-8");
   res.status(200).send(packingSolution);
 };
