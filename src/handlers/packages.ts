@@ -1,4 +1,4 @@
-import Packer from "jt-packer-utility";
+import PackerUtil from "jt-packer-utility";
 
 import { Request, Response, NextFunction } from "express";
 
@@ -11,17 +11,25 @@ import { Request, Response, NextFunction } from "express";
  * @returns {String} Package item details
  */
 const getPackages = async (req: Request, res: Response, next: NextFunction) => {
-  const fileName = req.params.fileName;
-  const filePath = `/resources/${fileName}`; // TODO: Remove hardcoding
+  try {
+    const fileName = req.params.fileName;
+    const filePath = `/resources/${fileName}`; // TODO: Remove hardcoding
 
-  const packingSolution = await Packer.pack(
-    filePath
-  );
+    const packingSolution = await PackerUtil.pack(filePath);
 
-  console.log('packingSolution------->>>', packingSolution);
-  
-  res.set("Content-Type", "text/html; charset=utf-8");
-  res.status(200).send(packingSolution);
+    console.log("packingSolution------->>>", packingSolution);
+
+    res.set("Content-Type", "text/html; charset=utf-8");
+    res.status(200).send(packingSolution);
+  } catch (err: any) {
+    let statusCode = 500;
+
+    if (err && err.name && err.name.includes("NotFound")) {
+      statusCode = 404;
+    }
+
+    res.status(statusCode).send(err);
+  }
 };
 
 const packagesHandlers = {
