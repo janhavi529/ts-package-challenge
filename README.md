@@ -1,4 +1,4 @@
-# Assignment: Package Challenge
+# Package Challenge
 
 ## Introduction
 You want to send your friend a package with different things. 
@@ -41,15 +41,22 @@ class Packer {
 }
 ```
 
-7. Signatures of ```Packer``` class, ```pack()``` method and ```PackingError``` are already provided, please **do not change** them. Feel free to structure the rest of the project as you wish!
+7. Signatures of ```Packer``` class, ```pack()``` method and ```PackingError``` are already provided, please **do not change** them.
 
-## Remember
-Apply best practices for software design & development and document your approach (what strategy/algorithm/data structure/design pattern you chose and why) and put comments into your source files. We do consider TDD a best practice.
+## Usage
 
-## Your solution
-When finished, please send a zip file with your source to your contact person within Mobiquity. The zip file/repository should include the typescript source files for your solution. The source code will be examined by one of our developers. Note that your delivered archive should be considered production release ready.
-Your solution is meant to be used as a library (i.e. npm package), NOT as a standalone application.
-Good luck with this assignment. If you have any questions, don’t hesitate to ask your contact person within Mobiquity.
+A test GET API endpoint has been created which expects a file name input parameter and calls the packer utility (jt-packer-utility) to get the solution which determines the list of items to put into each package so that the total weight is less than or equal to the package limit and the total cost is as large as possible.
 
+Route: ```GET /packages/:fileName```
 
-Good luck, and have fun!
+Note: This is to provide ease of testing for various scenarios for the Packer utility and can be tested using Postman.
+
+Example file name inputs (Note: These are all present in the 'resources' folder):
+- input_valid.txt -> All package inputs in the correct format (happy path)
+- input_invalid_package_weight.txt -> Not meeting the constraint where package max weight must be ≤ 100
+- input_invalid_item_weight.txt -> Not meeting the constraint where item weight must be ≤ 100
+- input_invalid_item_cost.txt -> Not meeting the constraint where item cost must be ≤ 100
+- input_invalid_item_number.txt -> Not meeting the constraint where number of items must be ≤ 15
+- input_invalid_item_format.txt -> Contains a different format for an item than the expected ```(3,3.98,€16)``` format. In this case, an error is not thrown for the file, valid item formats are processed to calculate the result.
+- input_invalid_no_package_weight.txt -> Invalid package input line, which doesn't contain a maximum weight limit. In this case, it is assumed that no items can be placed into the package and '-' is returned.
+- input_invalid_no_items.txt -> Invalid item input line, which doesn't contain a list of items to be selected. In this case, it is assumed that no items can be placed into the package and '-' is returned.
