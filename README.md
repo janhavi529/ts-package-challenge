@@ -63,11 +63,11 @@ Example file name inputs (Note: These are all present in the 'resources' folder)
 
 The API code is deployed on the Heroku hosting provider at: https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/
 GET requests must be in the following format (can be fired from Postman):
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_valid.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_package_weight.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_weight.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_cost.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_number.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_format.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_no_package_weight.txt
-- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_no_items.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_valid.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_package_weight.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_item_weight.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_item_cost.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_item_number.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_item_format.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_no_package_weight.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/packages/input_invalid_no_items.txt
