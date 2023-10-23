@@ -60,3 +60,14 @@ Example file name inputs (Note: These are all present in the 'resources' folder)
 - input_invalid_item_format.txt -> Contains a different format for an item than the expected ```(3,3.98,€16)``` format. In this case, an error is not thrown for the file, valid item formats are processed to calculate the result.
 - input_invalid_no_package_weight.txt -> Invalid package input line, which doesn't contain a maximum weight limit. In this case, it is assumed that no items can be placed into the package and '-' is returned.
 - input_invalid_no_items.txt -> Invalid item input line, which doesn't contain a list of items to be selected. In this case, it is assumed that no items can be placed into the package and '-' is returned.
+
+The API code is deployed on the Heroku hosting provider at: https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/
+GET requests must be in the following format (can be fired from Postman):
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_valid.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_package_weight.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_weight.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_cost.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_number.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_item_format.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_no_package_weight.txt
+- GET https://enigmatic-brook-49863-43d60eee055a.herokuapp.com/input_invalid_no_items.txt
